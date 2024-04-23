@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="sensor"
+            type="String" />
+
+        <variable
+            name="type"
+            type="Integer" />
+
+        <variable
+            name="data_x"
+            type="String"
+            />
+
+        <variable
+            name="data_y"
+            type="String" />
+
+        <variable
+            name="data_z"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/tableSensor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/text_label_sensor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{sensor}"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/layout_margin_table">
+
+                <TextView
+                    android:id="@+id/textLabelSensorX"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/text_x"
+                    tools:viewBindingIgnore="true" />
+
+                <TextView
+                    android:id="@+id/textValueSensorX"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@{data_x}"
+                    />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/layout_margin_table">
+
+                <TextView
+                    android:id="@+id/textLabelSensorY"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/text_y"
+                    tools:viewBindingIgnore="true" />
+
+                <TextView
+                    android:id="@+id/textValueSensorY"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@{data_y}" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/layout_margin_table">
+
+                <TextView
+                    android:id="@+id/textLabelSensorZ"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/text_z"
+                    tools:viewBindingIgnore="true" />
+
+                <TextView
+                    android:id="@+id/textValueSensorZ"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@{data_z}" />
+
+            </TableRow>
+        </TableLayout>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            />
+
+
+    </LinearLayout>
+</layout>
