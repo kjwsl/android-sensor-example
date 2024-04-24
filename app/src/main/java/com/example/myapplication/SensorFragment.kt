@@ -29,7 +29,7 @@ val XYZ_SENSORS: Array<Int> = arrayOf(
 
 class SensorFragment : Fragment() {
     companion object {
-        const val TAG: String = "com.example.myapplicaiton.SensorFragment"
+        const val TAG: String = "com.example.myapplication.SensorFragment"
     }
 
     private lateinit var mSensorManager: SensorManager
@@ -87,6 +87,14 @@ class SensorFragment : Fragment() {
         */
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
     }
 
     override fun onCreateView(
