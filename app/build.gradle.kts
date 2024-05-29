@@ -1,3 +1,4 @@
+import com.android.build.api.dsl.Packaging
 import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
 
 plugins {
@@ -8,16 +9,24 @@ plugins {
 android {
     namespace = "com.example.myapplication"
     compileSdk = 34
+    ndkVersion = "27.0.11718014"
 
     defaultConfig {
-        applicationId = "com.example.myapplication"
+        applicationId = "com.example.myaication"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
     }
+    externalNativeBuild {
+        cmake {
+            version = "3.22.1"
+        }
+    }
+
+
 
     buildTypes {
         release {
@@ -26,6 +35,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            ndk {
+                debugSymbolLevel = "FULL"
+            }
         }
     }
 

@@ -6,11 +6,13 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.os.Debug
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.databinding.FragmentSensorBinding
 import com.example.myapplication.databinding.SensorXyzBinding
 
@@ -43,8 +45,13 @@ class SensorFragment : Fragment() {
         mSensorManager = context?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
         val sensorList = mSensorManager.getSensorList(Sensor.TYPE_ALL)
-        Log.d(TAG, "Sensor List: $sensorList")
 
+        mBinding.myfab.setOnClickListener {
+            Debug.startNativeTracing()
+            Log.d(TAG,"getSensorList(Sensor.TYPE_ALL) is called")
+            Log.d(TAG, "Sensor List: ${mSensorManager.getSensorList(Sensor.TYPE_ALL)}")
+            Debug.stopNativeTracing()
+        }
         XYZ_SENSORS.forEach { type ->
             val curSensor = mSensorManager.getDefaultSensor(type)
             mSensorLayoutByType[type] = curSensor
