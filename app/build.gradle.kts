@@ -1,5 +1,3 @@
-import com.android.build.api.dsl.Packaging
-import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
 
 plugins {
     alias(libs.plugins.androidApplication)
@@ -7,12 +5,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.myapplication"
+    namespace = "com.example.sensorexample"
     compileSdk = 34
     ndkVersion = "27.0.11718014"
 
     defaultConfig {
-        applicationId = "com.example.myaication"
+        applicationId = "com.example.sensorexample"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

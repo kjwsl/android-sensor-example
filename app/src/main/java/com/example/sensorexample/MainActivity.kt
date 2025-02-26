@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.sensorexample
 
 import android.app.Activity
 import android.os.Bundle
@@ -11,7 +11,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
-import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.sensorexample.databinding.ActivityMainBinding
+import com.example.sensorexample.R
 
 class MainActivity : AppCompatActivity() {
 

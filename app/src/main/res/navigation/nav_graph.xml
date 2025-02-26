@@ -7,9 +7,8 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.myapplication.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:name="com.example.sensorexample.SensorFragment"
+        android:label="@string/first_fragment_label">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
@@ -17,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.myapplication.SecondFragment"
+        android:name="com.example.sensorexample.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 
@@ -27,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/SensorFragment"
-        android:name="com.example.myapplication.SensorFragment"
+        android:name="com.example.sensorexample.SensorFragment"
         android:label="Sensor Fragment"
         tools:layout="@layout/fragment_sensor">
 

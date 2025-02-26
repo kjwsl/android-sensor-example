@@ -1,6 +1,7 @@
-package com.example.myapplication
+package com.example.sensorexample
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.hardware.Sensor
@@ -8,8 +9,11 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.location.LocationManager
+import android.location.OnNmeaMessageListener
 import android.os.Bundle
 import android.os.Debug
+import android.os.Handler
+import android.os.HandlerThread
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -18,8 +22,8 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.example.myapplication.databinding.FragmentSensorBinding
-import com.example.myapplication.databinding.SensorXyzBinding
+import com.example.sensorexample.databinding.FragmentSensorBinding
+import com.example.sensorexample.databinding.SensorXyzBinding
 
 /**
  * A simple [Fragment] subclass.
@@ -60,7 +64,7 @@ class SensorFragment : Fragment() {
         }
 
     companion object {
-        const val TAG: String = "com.example.myapplication.SensorFragment"
+        const val TAG: String = "com.example.sensorexample.SensorFragment"
     }
 
     private lateinit var mSensorManager: SensorManager
@@ -111,17 +115,6 @@ class SensorFragment : Fragment() {
             )
 
         }
-        /*
-                mBinding.textSensorList.text =
-                    "Sensor List: " + sensorList.joinToString(", ", transform = { it -> it.name })
-                Log.d(TAG, "Sensor List: ${sensorList.joinToString { it.name }}")
-
-                var sensorListText: String = ""
-                sensorList.forEach { sensor ->
-                    sensorListText += "${sensor.name} "
-                }
-        */
-
 
     }
 
@@ -170,12 +163,19 @@ class SensorFragment : Fragment() {
         }
     }
 
+    @SuppressLint("MissingPermission")
     private fun onLocationPermissionsGranted() {
         // Initialize LocationManager and proceed with location-related tasks
         locationManager = context?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         // For example, check if providers are enabled and request location updates
         Toast.makeText(context, "Location permissions granted.", Toast.LENGTH_SHORT).show()
         // Proceed to initialize LocationManager or other location services
+
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000L, 10f, MyLocationListener(requireContext()))
+        val nmeaHandlerThread = HandlerThread("NmeaHandler")
+        nmeaHandlerThread.start()
+        val nmeaHandler = Handler(nmeaHandlerThread.looper)
+        locationManager.addNmeaListener(OnNmeaMessageListener { message, timestamp -> Log.d(TAG, "NMEA: $message, timestamp: $timestamp") },nmeaHandler)
     }
 
     private fun onLocationPermissionsDenied() {
