@@ -16,9 +16,8 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.sensorexample.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:name="com.example.sensorexample.SensorFragment"
+        android:label="@string/second_fragment_label">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
